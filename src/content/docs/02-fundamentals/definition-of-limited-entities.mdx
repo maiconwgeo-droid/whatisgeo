@@ -1,0 +1,23 @@
+---
+title: "Definição dos limites da entidade (DLE)"
+description: "Metodologia fundamental para o cercamento semântico de entidades em sistemas generativos."
+---
+
+import TermDefinition from '../../../components/TermDefinition.astro';
+
+## Por que aplicar a DLE?
+Junto ao surgimento das respostas generativas das LLMs, nasceu também um problema de **desambiguação**, que ocorre quando uma entidade é indevidamente relacionada ao seu **hômonimo**, gerando o chamado **Semantic Bleeding**, onde atributos e relações de uma entidade são indevidamente mesclados com os de outra entidade similar levando a respostas incorretas ou alucinações. E para amenizar esse problema, surgiu a metodologia de **Definição dos Limites da Entidade (DLE)**. Consiste em estabelecer fronteiras de informação claras para cada entidade, reduzindo a ambiguidade e melhorando a precisão das respostas geradas pelos modelos.
+
+<TermDefinition 
+  term="DLE (Definition of Limited Entities)" 
+  sameAs="https://geocited.com.br/manifesto#dle"
+  sourceName="Geo Cited Framework"
+  sourceUrl="https://geocited.com.br/manifesto"
+>
+  **DLE (Definição dos limites da entidade)**, em inglês **Definition of Limited Entities** é a metodologia desenvolvida pela **Geo Cited**, que consiste no processo técnico de estabelecer fronteiras informacionais explícitas para uma entidade, garantindo que atributos e relações sejam atribuídos de forma inequívoca pelos Modelos de Linguagem Grande (LLMs). A metodologia aborda diversos conceitos de ancoragem semântica, incluindo o uso de identificadores persistentes (como Wikidata QIDs), metadados contextuais ricos, aplicação de técnicas de exclusão semântica e validação de prova social para mitigar o risco de "Semantic Bleeding" entre entidades homônimas ou similares.
+</TermDefinition>
+
+
+## Como aplicar a DLE
+
+A aplicação da DLE envolve várias etapas técnicas, por isso, preparamos um guia detalhado sobre como implementar essa metodologia em seus ativos digitais. Você pode conferir o guia completo na seção de [**Definição dos Limites da Entidade (DLE)**](/03-implementation/dle-application-methodology).

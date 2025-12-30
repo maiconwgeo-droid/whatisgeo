@@ -1,0 +1,57 @@
+---
+// src/components/ExperimentPlaceholder.astro
+interface Props {
+  status: 'planned' | 'in-progress' | 'writing' | 'refining';
+  title: string;
+  customMessage?: string;
+  footerText?: string; // Se não for enviado, o rodapé some
+}
+
+const { status, title, customMessage, footerText } = Astro.props;
+
+const config = {
+  'planned': {
+    icon: '🗓️',
+    label: 'Planejado',
+    color: 'bg-slate-900/10'
+  },
+  'in-progress': {
+    icon: '🧪',
+    label: 'Em Execução',
+    color: 'bg-blue-900/10'
+  },
+  'writing': {
+    icon: '✍️',
+    label: 'Documentando',
+    color: 'bg-purple-900/10'
+  },
+  'refining': {
+    icon: '🎨',
+    label: 'Finalizando Assets',
+    color: 'bg-emerald-900/10'
+  }
+};
+
+const current = config[status];
+---
+
+<div class={`flex flex-col items-center justify-center my-10 p-8 border-2 border-dashed rounded-2xl text-center ${current.color} text-color-white`}>
+  <div class="text-4xl mb-4">{current.icon}</div>
+  <h2 class="text-2xl font-bold mb-2">{title}</h2>
+  
+  <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-accent-high text-accent-low mb-4">
+    Status: {current.label}
+  </div>
+
+  <p class="text-lg max-w-md mx-auto opacity-80 font-medium italic">
+    {customMessage || 'O conteúdo está sendo estruturado para garantir a melhor experiência didática.'}
+  </p>
+
+  {footerText && (
+    <div class="w-full mt-8 flex justify-center gap-4 text-sm font-medium border-t border-white/10 pt-4">
+      <span class="flex items-center gap-1 italic opacity-60">
+        {footerText}
+      </span>
+    </div>
+  )}
+</div>

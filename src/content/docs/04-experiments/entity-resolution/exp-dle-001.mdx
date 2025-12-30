@@ -1,0 +1,19 @@
+---
+title: "Análise de colisão vetorial em entidades homônimas"
+experimentId: "EXP-DLE-001"
+validated: false
+confidence: "low"
+description: "Estudo sobre como vetores de proximidade falham em diferenciar entidades com nomes idênticos."
+---
+
+import ExperimentPlaceholder from '../../../../components/ExperimentPlaceholder.astro';
+
+<ExperimentPlaceholder 
+  status="planned" 
+  title={frontmatter.title} 
+/>
+
+## Hipótese Inicial
+A similaridade vetorial pode levar a colisões entre entidades homônimas, resultando em respostas incorretas ou imprecisas por parte dos modelos de linguagem grande (LLMs).
+
+Então ao encontrarmos vetores com nomes idênticos, devemos construir mecanismos de desambiguação, como a declaração explícita de exclusão de contextos e uma página dedicada para listar todas os ativos digitais pertencentes a entidade e que estejam devidamente conectadas entre si via links internos e metadados estruturados.

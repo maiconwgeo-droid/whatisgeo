@@ -1,0 +1,39 @@
+---
+// src/components/ExperimentSchema.astro
+import { commonSchema, PERSON_ID } from '../lib/schema/base';
+
+const { frontmatter } = Astro.props;
+const currentUrl = Astro.url.toString();
+
+// Lógica Dinâmica
+const authorId = frontmatter.authorId || PERSON_ID;
+const lang = frontmatter.lang || 'pt-BR';
+
+const experimentGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    commonSchema.organization,
+    // Se o autor for você, o commonSchema.founder já resolve. 
+    // Se for outro, no futuro adicionamos o objeto do novo autor aqui.
+    commonSchema.founder, 
+    {
+      "@type": "ScholarlyArticle",
+      "@id": `${currentUrl}#article`,
+      "headline": frontmatter.title,
+      "description": frontmatter.description,
+      "author": { "@id": authorId },
+      "publisher": { "@id": commonSchema.organization["@id"] },
+      "datePublished": frontmatter.date || new Date().toISOString(),
+      "inLanguage": lang,
+      "keywords": frontmatter.keywords?.join(", "),
+      "about": frontmatter.about?.map((item: any) => ({
+        "@type": "Thing",
+        "name": item.name,
+        "sameAs": item.sameAs
+      })),
+      "abstract": frontmatter.hypothesis
+    }
+  ]
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(experimentGraph)} />

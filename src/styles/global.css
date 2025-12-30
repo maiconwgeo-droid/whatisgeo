@@ -1,0 +1,100 @@
+/* src/styles/custom.css */
+@import "tailwindcss";
+
+/* Dark mode colors. */
+:root {
+	--sl-color-accent-low: #311343;
+	--sl-color-accent: #9700d7;
+	--sl-color-accent-high: #f0e0fd;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #f1ebf6;
+	--sl-color-gray-2: #ccc5d2;
+	--sl-color-gray-3: #ac9db7;
+	--sl-color-gray-4: #5f5269;
+	--sl-color-gray-5: #3f3248;
+	--sl-color-gray-6: #2d2135;
+  --sl-color-gray-7: #201d25;
+	--sl-color-black: #100d11;
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #f0dbff;
+	--sl-color-accent: #8100b7;
+	--sl-color-accent-high: #471364;
+	--sl-color-white: #1b161f;
+	--sl-color-gray-1: #2d2135;
+	--sl-color-gray-2: #3f3248;
+	--sl-color-gray-3: #5f5269;
+	--sl-color-gray-4: #93859e;
+	--sl-color-gray-5: #c6bfcc;
+	--sl-color-gray-6: #f1ebf6;
+	--sl-color-gray-7: #f8f5fa;
+	--sl-color-black: #ffffff;
+}
+
+/* bg */
+
+.bg-accent-low {
+  background-color: var(--sl-color-accent-low) !important;
+}
+.bg-accent-high {
+  background-color: var(--sl-color-accent-high) !important;
+}
+
+.bg-color-gray-6 {
+  background-color: var(--sl-color-gray-6) !important;
+}
+
+.bg-color-gray-7 {
+  background-color: var(--sl-color-gray-7) !important;
+}
+
+/* text */
+
+.text-accent {
+  color: var(--sl-color-accent) !important;
+}
+
+.text-accent-low {
+  color: var(--sl-color-accent-low) !important;
+}
+
+.text-accent-high {
+  color: var(--sl-color-accent-high) !important;
+}
+
+.text-color-white {
+  color: var(--sl-color-white) !important;
+}
+
+/* border */
+.border-color-accent-high {
+  border-color: var(--sl-color-accent-high) !important;
+}
+
+.bg-color-white {
+  background-color: var(--sl-color-white) !important;
+}
+
+hr {
+    @apply border-0 border-b my-12;
+    border-color: var(--sl-color-gray-7);
+}
+
+.content-panel p {
+    color: var(--sl-color-gray-1) !important;
+}
+
+.content-panel h2 {
+    @apply text-2xl md:text-4xl font-semibold tracking-tight mt-12 mb-6 border-none;
+    color: var(--sl-color-accent-high) !important;
+}
+
+.sl-markdown-content a {
+  text-decoration: underline;
+}
+
+.sl-markdown-content li {
+  margin-left: 20px;
+  list-style: disc;
+}

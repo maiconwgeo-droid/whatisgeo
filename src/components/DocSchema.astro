@@ -1,0 +1,32 @@
+---
+// src/components/DocSchema.astro
+import { commonSchema, PERSON_ID } from '../lib/schema/base';
+
+const { frontmatter } = Astro.props;
+const currentUrl = Astro.url.toString();
+
+const authorId = frontmatter.authorId || PERSON_ID;
+const lang = frontmatter.lang || 'pt-BR';
+
+const docGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    commonSchema.organization,
+    commonSchema.founder,
+    {
+      "@type": "TechArticle",
+      "@id": `${currentUrl}#article`,
+      "headline": frontmatter.title,
+      "description": frontmatter.description,
+      "author": { "@id": authorId },
+      "publisher": { "@id": commonSchema.organization["@id"] },
+      "inLanguage": lang,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": currentUrl
+      }
+    }
+  ]
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(docGraph)} />

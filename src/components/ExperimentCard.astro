@@ -1,0 +1,55 @@
+---
+// src/components/ExperimentCard.astro
+import { getCollection } from 'astro:content';
+
+interface Props {
+  folder: string;
+}
+
+const { folder } = Astro.props;
+
+// Buscamos a coleção
+const rawExperiments = await getCollection('docs', (entry) => {
+  return entry.id.startsWith(folder) && !entry.id.endsWith('index.mdx');
+});
+
+// Forçamos o tipo para ignorar a restrição do Starlight
+const experiments = rawExperiments as any[];
+
+// Agora o erro no .sort e no .map vai sumir
+const sorted = experiments.sort((a, b) => {
+  const idA = a.data.experimentId || '';
+  const idB = b.data.experimentId || '';
+  return idA.localeCompare(idB);
+});
+
+const getStatus = (exp: any) => {
+  if (exp.data.validated) return { label: 'Concluído', class: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' };
+  if (exp.data.confidence === 'low') return { label: 'Planejado', class: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400' };
+  return { label: 'Em Andamento', class: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' };
+};
+---
+
+<div class="grid gap-6 mt-8">
+  {sorted.map(exp => {
+    const status = getStatus(exp);
+    return (
+      <a href={`/${exp.slug}`} class="no-underline block p-6 border border-slate-200 dark:border-slate-800 rounded-xl hover:ring-2 hover:ring-purple-500 transition-all bg-white dark:bg-slate-900/50 group">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-xs font-mono px-2 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 rounded">
+            {exp.data.experimentId || 'EXP'}
+          </span>
+          <span class={`text-[10px] uppercase font-bold px-2 py-1 rounded-full ${status.class}`}>
+            {status.label}
+          </span>
+        </div>
+        <h3 class="text-xl font-bold m-0 group-hover:text-purple-500 transition-colors">
+          {exp.data.title}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 mb-0 line-clamp-2">
+          {exp.data.description || exp.data.hypothesis}
+        </p>
+      </a>
+    );
+  })}
+</div>

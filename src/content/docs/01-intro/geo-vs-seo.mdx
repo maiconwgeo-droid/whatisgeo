@@ -1,0 +1,50 @@
+---
+title: "GEO vs SEO: Entendendo as diferenças"
+description: "Comparativo técnico entre Search Engine Optimization e Generative Engine Optimization."
+---
+import TermDefinition from '../../../components/TermDefinition.astro';
+
+## Conceitos Fundamentais
+
+Para podermos comparar ambos e entender suas diferenças, precisamos definir claramente o que cada termo significa. Abaixo estão as definições técnicas de **SEO** e **GEO**.
+
+<TermDefinition 
+  term="SEO (Search Engine Optimization)" 
+  sameAs="https://en.wikipedia.org/wiki/Search_engine_optimization"
+  sourceName="Google Developers"
+  sourceUrl="https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+>
+  SEO (Search Engine Optimization) refere-se ao processo de otimização de conteúdo digital para melhorar sua visibilidade e classificação em motores de busca tradicionais, como Google, Bing, entre outros. O foco principal do SEO é garantir que o conteúdo seja facilmente indexado e recuperado por algoritmos de busca baseados em palavras-chave e relevância textual.
+</TermDefinition>
+
+## O que isso significa na prática?
+
+SEO tem como objetivo principal melhorar o posicionamento do seu conteúdo em resultados de busca tradicionais, focando em aspectos como palavras-chave, backlinks, estrutura do site, e aplicando técnicas de clusters de conteúdo, SEO busca aumentar o tráfego orgânico e a visibilidade do site por meio da melhora do ranqueamento nas páginas de resultados dos motores de busca (SERPs).
+
+## Comparando com GEO
+
+<TermDefinition 
+  term="GEO (Generative Engine Optimization) by WhatIsGeo" 
+  sameAs={["https://geocited.com.br", "https://geocited.com.br/sobre#maicon-willi"]}
+  sourceName="WhatIsGeo"
+  sourceUrl="https://whatisgeo.io/intro/what-is-geo"
+  evidenceUrl="https://whatisgeo.io/05-experiments/lines/exp-001"
+>
+  GEO (Generative Engine Optimization) é a estratégia aplicada a **otimização de ativos digitais** (páginas web, redes sociais, conteúdos audiovisuais, documentos públicos) para serem **recuperadas, selecionadas e citadas** pelas LLMs (Modelos de Linguagem Grande) e Sistemas de Resposta Generativa (GRS).
+</TermDefinition> 
+
+## Resumo das Diferenças
+| Aspecto                | SEO                                         | GEO                                         |
+|-----------------------|---------------------------------------------|---------------------------------------------|
+| Paradigma base        | "Strings" (Palavras-chave e cadeias de caracteres) | "Things" (Entidades, conceitos e relações) |
+| Objetivo Principal    | Melhorar o ranqueamento em motores de busca tradicionais | Otimizar conteúdo para ser citado por modelos generativos |
+| Foco                  | Volume de busca e autoridade de domínio (DR/DA) | Confiança contextual, information gain |
+| Técnicas              | Otimização on-page, link building, SEO técnico | Definição dos limites da entidade (DLE), estruturação de grafos de conhecimento, ancoragem de IDs, validação de prova social |
+
+Isso mostra uma mudança significativa na forma como o conteúdo deve ser criado e otimizado para atender às demandas dos motores de busca modernos baseados em IA generativa, onde migramos de uma **abordagem centrada em palavras-chave** para uma focada em **entidades**, **contexto** e principalmente **confiabilidade**.
+
+Perceba que para SEO, o foco era em criar **clusters de conteúdos** centralizados em torno de **palavras-chave** específicas, criando uma especie de "Território" onde se ajudavam mutuamente, reforçando a autoridade do domínio através do link building tradicional. 
+
+Já o GEO é mais complexo, pois exige a construção de **[entidades semânticas robustas](/02-fundamentals/entity-anchoring)** e precisa que haja **[ganho de informação](/02-fundamentals/information-gain)** (information gain), além disso, é necessário estabelecer e manter uma **[confiança contextual](/02-fundamentals/contextual-trust)** sólida para mitigar os riscos do **[semantic bleeding](/02-fundamentals/semantic-bleeding)**. 
+
+Além disso as LLMs avaliam a reputação de um ativo digital não apenas por links diretos, mas por um forte **[consenso semântico](/02-fundamentals/semantic-consensus)**: menções e citações em diversos contextos que validam a autoridade da entidade, mesmo que não existam hiperlinks apontados diretamente.

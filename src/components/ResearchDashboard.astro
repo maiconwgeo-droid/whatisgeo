@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+
+const allExperiments = await getCollection('docs', (entry) => {
+  return entry.id.startsWith('04-experiments/lines/') && !entry.id.endsWith('index.mdx');
+});
+
+const experiments = allExperiments as any[]; 
+
+// 1. Concluídas: Validated é true
+const completed = experiments.filter(exp => exp.data.validated === true);
+
+// 2. Em Andamento: Validated é false mas a confiança é medium ou high
+const inProgress = experiments.filter(exp => 
+  exp.data.validated === false && (exp.data.confidence === 'medium' || exp.data.confidence === 'high')
+);
+
+// 3. Planejadas: Validated é false e confiança é 'low' (ou não definido)
+const planned = experiments.filter(exp => 
+  exp.data.validated === false && (exp.data.confidence === 'low' || !exp.data.confidence)
+);
+
+// 4. Recentes
+const latest = [...experiments]
+  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime())
+  .slice(0, 3);
+---
+
+<section class="not-prose mt-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+    <div class="p-6 mt-0! bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
+      <span class="block text-3xl font-bold text-blue-600">{inProgress.length}</span>
+      <span class="text-sm font-medium text-blue-800 dark:text-blue-300">Em Andamento</span>
+    </div>
+
+    <div class="p-6 mt-0! bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
+      <span class="block text-3xl font-bold text-green-600">{completed.length}</span>
+      <span class="text-sm font-medium text-green-800 dark:text-green-300">Concluídas</span>
+    </div>
+
+    <div class="p-6 mt-0! bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl">
+      <span class="block text-3xl font-bold text-slate-600 dark:text-slate-400">{planned.length}</span>
+      <span class="text-sm font-medium text-slate-500">Planejadas</span>
+    </div>
+  </div>
+
+  <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+    Atividades Recentes
+  </h3>
+  <div class="flex flex-col gap-4">
+    {latest.map(exp => (
+      <a href={`/${exp.slug}`} class="flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-purple-500 transition-all no-underline group">
+        <div>
+          <span class="text-[10px] font-mono text-purple-500 uppercase">{exp.data.experimentId || 'EXP'}</span>
+          <h4 class="text-base font-semibold text-slate-900 dark:text-white m-0 group-hover:text-purple-500 transition-colors">
+            {exp.data.title}
+          </h4>
+        </div>
+        <span class="text-xs text-slate-500 italic">Ver detalhes →</span>
+      </a>
+    ))}
+  </div>
+</section>

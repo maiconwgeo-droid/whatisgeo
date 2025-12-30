@@ -1,0 +1,75 @@
+---
+// src/components/TermDefinition.astro
+import { PROJECT_ID, PERSON_ID } from '../lib/schema/base';
+
+interface Props {
+  term: string;
+  definition: string;
+  sameAs?: string | string[];      // Link para autoridade global (Wikipedia/Wikidata)
+  sourceName?: string;  // Nome do autor/artigo citado (Ex: Fulano)
+  sourceUrl?: string;   // Link para o artigo do Fulano
+  evidenceUrl?: string; // Link para o SEU experimento (Ex: /05-experiments/exp-001)
+}
+
+const { term, definition, sameAs, sourceName, sourceUrl, evidenceUrl } = Astro.props;
+const currentUrl = Astro.url.toString();
+const termId = term.toLowerCase().replace(/\s+/g, '-');
+
+// Se for String, coloca dentro de um Array.
+const normalizedSameAs = sameAs 
+  ? (Array.isArray(sameAs) ? sameAs : [sameAs]) 
+  : undefined;
+
+const termSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DefinedTerm",
+      "@id": `${currentUrl}#${termId}`,
+      "name": term,
+      "description": definition,
+      "inDefinedTermSet": PROJECT_ID,
+      "url": `${currentUrl}#${termId}`,
+      ...(normalizedSameAs && { "sameAs": normalizedSameAs }),
+      // Citando a fonte externa como citação oficial
+      "citation": sourceUrl ? {
+        "@type": "CreativeWork",
+        "name": sourceName,
+        "url": sourceUrl
+      } : undefined,
+      // Conectando o termo ao SEU experimento como prova
+      "subjectOf": evidenceUrl ? {
+        "@type": "ScholarlyArticle",
+        "url": `${import.meta.env.SITE}${evidenceUrl}`
+      } : undefined
+    }
+  ]
+};
+---
+
+<div id={termId} class="my-8 p-6 border-l-4 border-purple-500 bg-purple-900/10 rounded-r-xl">
+  <dt class="w-fit p-0.5 text-xs font-mono text-accent bg-white uppercase tracking-widest mb-2">
+    Definição
+  </dt>
+  <dd>
+    <h3 class="text-2xl font-bold mb-3">{term}</h3>
+    
+    <div class="prose dark:prose-invert max-w-none text-lg text-color-white">
+      <slot /> </div>
+
+    <div class="mt-4 flex flex-wrap gap-4 items-center text-sm border-t border-slate-200 dark:border-slate-800 pt-4">
+      {sourceUrl && (
+        <span class="text-color-white">
+          Baseado em: <a href={sourceUrl} target="_blank" class="font-bold text-purple-500 hover:underline">{sourceName}</a>
+        </span>
+      )}
+      {evidenceUrl && (
+        <span class="text-color-white">
+          Evidência: <a href={evidenceUrl} class="font-bold text-green-600 dark:text-green-400 hover:underline">Ver Experimento XYZ</a>
+        </span>
+      )}
+    </div>
+  </dd>
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify(termSchema)} />

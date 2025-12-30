@@ -1,0 +1,75 @@
+---
+title: Documentação WhatIsGeo
+description: R&D em Generative Engine Optimization.
+# tableOfContents: false remove a barra da direita mas mantém a da esquerda
+tableOfContents: false 
+prev: false
+next: false
+# EditUrl e LastUpdated como false ajudam a manter o visual clean de "Home"
+editUrl: false
+lastUpdated: false
+---
+
+import ResearchCard from '../../components/ResearchCard.astro';
+import StatusBanner from '../../components/StatusBanner.astro';
+import PageFooter from '../../components/PageFooter.astro';
+
+<header className="mb-12 border-b border-purple-950/40 pb-10">
+  <span className="w-fit m-0! text-xs! px-3 py-1 rounded-full bg-color-gray-6 text-color-white font-bold tracking-widest uppercase">Unidade de R&D</span>
+
+  Com a ascensão de motores de busca baseados em IA generativa, a otimização de conteúdo mudou fundamentalmente. A documentação da WhatIsGeo explora essa nova realidade através de metodologia científica e experimentos validados.
+</header>
+
+## O contexto do GEO
+
+A transição semântica redefine a visibilidade técnica. Em ecossistemas de Large Language Models (LLMs), a relevância é determinada pela capacidade de um nó de informação ser identificado como a fonte de maior confiança e densidade semântica para um determinado contexto.
+
+Nossas linhas de investigação buscam mapear os critérios de citação e recomendação utilizados por agentes autônomos e motores de resposta.
+
+> **"O segredo do GEO é que a LLM só te cita quando você diz algo que ela gostaria de ter dito, mas não podia porque não tinha os seus dados."**
+> -- Maicon Willi
+
+## Nossa abordagem científica
+
+<div className="grid grid-cols-1 gap-6 my-10">
+  <ResearchCard 
+    title="Experimentos Reais" 
+    description="Testes de estresse em ambientes controlados para isolar variáveis de citação."
+    status="Ativo"
+  />
+  <ResearchCard 
+    title="Dados Validados" 
+    description="Resultados baseados em logs de busca reais e comportamento de LLMs."
+    status="Verificado"
+  />
+  <ResearchCard 
+    title="Transparência" 
+    description="Metodologias abertas para reprodução e crítica acadêmica."
+    status="Open Source"
+  />
+</div>
+
+<StatusBanner 
+  type="info" 
+  message="Todos os experimentos utilizam dados anonimizados para proteger a integridade das marcas participantes." 
+/>
+
+---
+
+## Participe da investigação
+
+Estamos constantemente validando novas hipóteses sobre o comportamento das IAs generativas. Se sua empresa deseja aplicar essas metodologias e contribuir com dados para nossas linhas de pesquisa, convidamos você a se tornar um **Caso Experimental**.
+
+<div className="mt-8 p-8 border border-purple-950/40 rounded-2xl bg-purple-950/5 text-center">
+  <h3 className="text-2xl font-bold mb-4">Sua marca pode ser o próximo experimento</h3>
+  <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+    Acesse nosso protocolo de aplicação e ajude a definir os padrões de GEO.
+  </p>
+  <a 
+    href="https://seulink.com" 
+    className="inline-block bg-accent-high text-accent-low hover:px-10 font-bold py-3 px-8 rounded-lg transition-all m-0!"
+  >Inscrever empresa para validação</a>
+</div>
+
+
+<PageFooter />

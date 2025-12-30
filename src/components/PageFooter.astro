@@ -1,0 +1,37 @@
+---
+interface Props {
+  author?: string;
+  email?: string;
+}
+
+const { 
+  author = "Maicon Willi", 
+  email = "maiconw.geo@gmail.com" 
+} = Astro.props;
+---
+
+<footer class="mt-20 pb-10 border-t border-white/10">
+  <div class="py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    
+    <div class="text-sm italic">
+      Escrito e mantido por <a href="https://geocited.com.br/sobre#maicon-willi" target="_blank" class="text-accent not-italic font-bold">{author}</a>.
+    </div>
+
+    <div class="flex flex-col gap-2 items-center md:items-end">
+      <p class="text-sm font-medium m-0 opacity-90">
+        Encontrou algum erro ou deseja participar?
+      </p>
+      <a 
+        href={`mailto:${email}`} 
+        class="flex items-center gap-2 px-4 py-2 bg-accent-low rounded-full text-xs font-bold transition-all no-underline text-white"
+      >
+        Entre em contato: {email}
+      </a>
+    </div>
+
+  </div>
+
+  <div class="text-[10px] uppercase tracking-widest opacity-70 text-center">
+    &copy; {new Date().getFullYear()} WhatIsGeo Research Lab — Generative Engine Optimization
+  </div>
+</footer>

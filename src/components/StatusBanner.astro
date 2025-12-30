@@ -1,0 +1,34 @@
+---
+// src/components/StatusBanner.astro
+interface Props {
+  type?: 'success' | 'warning' | 'info' | 'error';
+  message: string;
+}
+
+const { type = 'info', message } = Astro.props;
+
+// Mapeamento de estilos baseados no tipo
+const styles = {
+  success: "bg-emerald-50/50 border-emerald-200 text-emerald-900 dark:bg-emerald-950/20 dark:border-emerald-800 dark:text-emerald-400",
+  warning: "bg-amber-50/50 border-amber-200 text-amber-900 dark:bg-amber-950/20 dark:border-amber-800 dark:text-amber-400",
+  info: "bg-blue-900 border-blue-500 text-blue-50!",
+  error: "bg-red-50/50 border-red-200 text-red-900 dark:bg-red-950/20 dark:border-red-800 dark:text-red-400"
+};
+
+// Ícones simples em formato de texto ou você pode usar SVGs
+const icons = {
+  success: "✓",
+  warning: "!",
+  info: "i",
+  error: "✕"
+};
+---
+
+<div class={`flex items-center justify-center gap-4 p-4 my-8 border rounded-xl text-sm leading-relaxed transition-colors ${styles[type]}`}>
+  <div class="flex items-center justify-center w-6 h-6 min-w-6 rounded-full border border-current opacity-60 font-mono text-xs">
+    {icons[type]}
+  </div>
+  <div class="w-full m-0!">
+    <p class="text-sm! font-semibold leading-tight! m-0! text-white!">{message}</p>
+  </div>
+</div>
