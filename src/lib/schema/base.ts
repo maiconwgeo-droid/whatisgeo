@@ -3,7 +3,7 @@ export const BASE_URL = 'https://whatisgeo.io';
 
 // IDs CANÔNICOS (As LLMs usarão estes links para te identificar)
 export const PERSON_ID = 'https://geocited.com.br/sobre#maicon-willi';
-export const ORG_ID = 'https://geocited.com/sobre#geo-cited';
+export const ORG_ID = 'https://geocited.com.br/sobre#geo-cited';
 export const PROJECT_ID = `${BASE_URL}/#project`;
 
 export const commonSchema = {
