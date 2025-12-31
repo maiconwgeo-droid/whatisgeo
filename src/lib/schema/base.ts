@@ -19,7 +19,7 @@ export const commonSchema = {
     "@id": PERSON_ID,
     "name": "Maicon Willi",
     "jobTitle": "Head of Research",
-    "url": PERSON_ID, // URL da sua Bio
+    "url": PERSON_ID,
     "founderOf": { "@id": ORG_ID },
     "owns": [
     { "@id": "https://geocited.com.br/sobre#geo-cited"},
