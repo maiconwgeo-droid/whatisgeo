@@ -11,7 +11,7 @@ export const commonSchema = {
     "@type": "Organization",
     "@id": ORG_ID,
     "name": "Geo Cited",
-    "url": "https://geocited.com",
+    "url": "https://geocited.com.br",
     "logo": "https://whatisgeo.io/favicon.svg"
   },
   founder: {
@@ -20,7 +20,11 @@ export const commonSchema = {
     "name": "Maicon Willi",
     "jobTitle": "Head of Research",
     "url": PERSON_ID, // URL da sua Bio
-    "affiliation": { "@id": ORG_ID },
+    "founderOf": { "@id": ORG_ID },
+    "owns": [
+    { "@id": "https://geocited.com.br/sobre#geo-cited"},
+    { "@id": "https://whatisgeo.io" }
+  ],
     "knowsAbout": ["Generative Engine Optimization", "RAG", "LLM Semantic Analysis"]
   },
   project: {
