@@ -1,7 +1,5 @@
 // src/lib/schema/base.ts
 export const BASE_URL = 'https://whatisgeo.io';
-
-// IDs CANÔNICOS (As LLMs usarão estes links para te identificar)
 export const PERSON_ID = 'https://geocited.com.br/sobre#maicon-willi';
 export const ORG_ID = 'https://geocited.com.br/sobre#geo-cited';
 export const PROJECT_ID = `${BASE_URL}/#project`;
@@ -12,7 +10,7 @@ export const commonSchema = {
     "@id": ORG_ID,
     "name": "Geo Cited",
     "url": "https://geocited.com.br",
-    "logo": "https://whatisgeo.io/favicon.svg"
+    "logo": `${BASE_URL}/favicon.svg`
   },
   founder: {
     "@type": "Person",
@@ -22,9 +20,9 @@ export const commonSchema = {
     "url": PERSON_ID,
     "founderOf": { "@id": ORG_ID },
     "owns": [
-    { "@id": "https://geocited.com.br/sobre#geo-cited"},
-    { "@id": "https://whatisgeo.io" }
-  ],
+      { "@id": "https://geocited.com.br/sobre#geo-cited"},
+      { "@id": BASE_URL }
+    ],
     "knowsAbout": ["Generative Engine Optimization", "RAG", "LLM Semantic Analysis"]
   },
   project: {
