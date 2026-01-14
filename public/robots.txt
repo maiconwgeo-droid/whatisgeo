@@ -1,0 +1,18 @@
+# /public/robots.txt
+User-agent: *
+Allow: /
+
+# LLMs específicas
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+Sitemap: https://whatisgeo.io/sitemap-index.xml

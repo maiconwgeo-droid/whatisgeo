@@ -39,6 +39,14 @@ export default defineConfig({
           },
         },
         {
+          tag: 'link',
+          attrs: {
+            rel: 'ai-documentation',
+            href: '/llms.txt',
+            type: 'text/plain',
+          },
+        },
+        {
           tag: 'script',
           attrs: { type: 'application/ld+json' },
           content: jsonLdScript,
